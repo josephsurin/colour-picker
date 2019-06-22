@@ -1,0 +1,103 @@
+$color-area-bg: #2d323f
+$main-bg: #3c414e
+$dark-grey: #282c35
+
+body, html, #app
+    background-color: $main-bg
+    height: 100%
+    margin: 0
+    font-family: 'Noto Sans HK'
+    font-weight: 300
+    padding: 0
+    user-select: none
+
+.wrapper
+    display: grid
+    grid-template-columns: 500px auto
+    grid-template-rows: 100%
+    height: 100%
+    width: 100%
+    .colour-area
+        grid-column: 0
+        justify-self: start
+        height: 100%
+        width: 100%
+        background-color: $color-area-bg
+        display: grid
+        grid-template-columns: 100%
+        grid-template-rows: 400px auto
+        .colour-area-picker
+            padding: 20px
+            margin-top: -25px
+            position: relative
+            width: 400px
+            height: 400px
+            margin-left: 50%
+            transform: translateX(-50%)
+            .sat-val-map
+                width: 195px
+                height: 195px
+                position: absolute
+                z-index: 100000000 !important
+                left: 50% !important
+                top: 50% !important
+                transform: translate(-50%,-50%)
+            .hue
+                background-color: red
+            .hueslice
+                stroke-width: 20px
+            svg
+                fill: none
+                stroke-width: 20px
+                position: absolute
+                z-index: 1000000
+            .pseudo-border-hue
+                width: 324px
+                height: 324px
+                background-color: white
+                border-radius: 50%
+                position: absolute
+                top: 58px
+                left: 58px
+            .pseudo-border-hue2
+                width: 276px
+                height: 276px
+                background-color: $color-area-bg
+                border-radius: 50%
+                position: absolute
+                top: 82px
+                left: 82px
+    .colours-sliders
+        font-family: 'Noto Sans HK'
+        font-weight: 300
+        color: #6d727f
+        font-size: 12px
+        width: 90%
+        margin-left: 50%
+        transform: translateX(-50%)
+        display: grid
+        grid-template-columns: 100%
+        grid-template-rows: 60px 60px 60px 60px 60px 60px
+        .colours-slider
+            display: grid
+            grid-template-columns: 370px auto
+            grid-template-rows: 15px auto
+            .colour-labels
+                grid-column: 1/3
+                grid-row: 0
+                user-select: none
+                -moz-user-select: none
+                -webkit-user-select: none
+                margin-top: -4px
+            .colours-numinputs
+                margin-left: 6px
+                height: 27px
+                width: 80%
+                margin-top: -1px
+    .colour-preview
+        width: 60px
+        height: 60px
+        justify-self: center
+        border: 2px solid white
+        user-select: none
+        border-radius: 50%
