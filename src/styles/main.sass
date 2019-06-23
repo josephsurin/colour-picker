@@ -29,9 +29,14 @@ body, html, #app
     padding: 0
     user-select: none
 
+.copy-toast
+    padding-left: 24px !important
+    background-color: $colour-area-bg !important
+    border-radius: 3px
+
 .wrapper
     display: grid
-    grid-template-columns: 500px auto
+    grid-template-columns: 500px 200px 25% auto
     grid-template-rows: 100%
     height: 100%
     width: 100%
@@ -163,7 +168,35 @@ body, html, #app
             height: 50px
             cursor: pointer
             +textbox
-        .copy-toast
-            padding-left: 24px !important
-            background-color: $colour-area-bg
-            border-radius: 3px
+    .schemes-area
+        width: 100%
+        display: flex
+        flex-wrap: wrap
+        align-content: start
+        overflow-y: auto
+        .schemes-container
+            width: 100%
+            .schemes-name
+                font-family: 'Cantarell'
+                font-weight: 600
+                font-size: 12px
+                text-indent: 8px
+                width: 100%
+                padding: 4px 0
+                color: #ccc
+                background-color: $colour-area-bg
+                cursor: pointer
+            .schemes-elements-container
+                width: auto
+                height: auto
+                margin: 8px
+                display: flex
+                align-items: flex-start
+                flex-wrap: wrap
+                .schemes-element
+                    width: 50px
+                    height: 50px
+                    cursor: pointer
+            .schemes-hidden
+                height: 0
+                display: none

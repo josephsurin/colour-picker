@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ToastContainer } from 'react-toastify'
 import { Map } from 'coloreact'
 import tinycolor from 'tinycolor2'
 import Hue from './Hue.jsx'
@@ -8,6 +9,7 @@ import SatSlider from './SatSlider.jsx'
 import ValSlider from './ValSlider.jsx'
 import NumericInput from 'react-numeric-input'
 import PreviewArea from './PreviewArea.jsx'
+import SchemesArea from './SchemesArea.jsx'
 
 export default class App extends Component {
     constructor(props) {
@@ -79,6 +81,8 @@ export default class App extends Component {
                     </div>
                 </div>
                 <PreviewArea h={h} s={s} v={v} r={r} g={g} b={b} hex={hex} hexinput={hexinput} handleHex={this.handleHex.bind(this)} />
+                <SchemesArea seed={hex} />
+                <ToastContainer />
             </div>
         )
     }
