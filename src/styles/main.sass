@@ -35,8 +35,9 @@ body, html, #app
             margin-left: 50%
             transform: translateX(-50%)
             .sat-val-map
-                width: 195px
-                height: 195px
+                width: 192px
+                height: 192px
+                border: 2px solid white
                 position: absolute
                 z-index: 100000000 !important
                 left: 50% !important
@@ -82,6 +83,9 @@ body, html, #app
             display: grid
             grid-template-columns: 370px auto
             grid-template-rows: 15px auto
+            .slider
+                border: 1px solid white
+                outline: 1px solid black
             .colour-labels
                 grid-column: 1/3
                 grid-row: 0
@@ -92,8 +96,11 @@ body, html, #app
             .colours-numinputs
                 margin-left: 6px
                 height: 27px
-                width: 80%
+                width: 76%
                 margin-top: -1px
+                font-size: 11px
+                font-weight: 600
+                text-align: center
     .colour-preview
         width: 60px
         height: 60px
