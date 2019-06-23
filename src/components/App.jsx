@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Map } from 'coloreact'
+import tinycolor from 'tinycolor2'
 import Hue from './Hue.jsx'
 import RGBSlider from './RGBSlider.jsx'
 import HueSlider from './HueSlider.jsx'
 import SatSlider from './SatSlider.jsx'
 import ValSlider from './ValSlider.jsx'
 import NumericInput from 'react-numeric-input'
-import tinycolor from 'tinycolor2'
+import PreviewArea from './PreviewArea.jsx'
 
 export default class App extends Component {
     constructor(props) {
@@ -18,12 +19,13 @@ export default class App extends Component {
             r: 0,
             g: 0,
             b: 0,
-            hex: '#000000'
+            hex: '#000000',
+            hexinput: '#000000'
         }
     }
 
     render() {
-        let { s, v, h, r, g, b } = this.state
+        let { s, v, h, r, g, b, hex, hexinput } = this.state
         return (
             <div className="wrapper">
                 <div className="colour-area">
@@ -76,6 +78,7 @@ export default class App extends Component {
                             </div>
                     </div>
                 </div>
+                <PreviewArea h={h} s={s} v={v} r={r} g={g} b={b} hex={hex} hexinput={hexinput} handleHex={this.handleHex.bind(this)} />
             </div>
         )
     }
@@ -86,31 +89,50 @@ export default class App extends Component {
         var hex = tinycolor(newhex).toHexString()
         let { h, s, v } = tinycolor(hex).toHsv()
         s *= 100; v *= 100
-        this.setState(Object.assign({ hex, h, s, v }, tinycolor(hex).toRgb()))
+        this.setState(Object.assign({ hexinput: hex, hex, h, s, v }, tinycolor(hex).toRgb()))
     }
 
     handleHue(h) {
         var hex = tinycolor(`hsv(${h}, ${this.state.s}%, ${this.state.v}%)`).toHexString()
         let { r, g, b } = tinycolor(hex).toRgb()
-        this.setState({ h, hex, r, g, b })
+        this.setState({ h, hexinput: hex, hex, r, g, b })
     }
 
     handleSat(s) {
         var hex = tinycolor(`hsv(${this.state.h}, ${s}%, ${this.state.v}%)`).toHexString()
         let { r, g, b } = tinycolor(hex).toRgb()
-        this.setState({ s, hex, r, g, b })
+        this.setState({ s, hexinput: hex, hex, r, g, b })
     }
 
     handleVal(v) {
         var hex = tinycolor(`hsv(${this.state.h}, ${this.state.s}%, ${v}%)`).toHexString()
         let { r, g, b } = tinycolor(hex).toRgb()
-        this.setState({ v, hex, r, g, b })
+        this.setState({ v, hexinput: hex, hex, r, g, b })
     }
 
     handleSaturationValue(s, v) {
         var hex = tinycolor(`hsv(${this.state.h}, ${s}%, ${v}%)`).toHexString()
         let { r, g, b } = tinycolor(hex).toRgb()
-        this.setState({ s, v, hex, r, g, b })
+        this.setState({ s, v, hexinput: hex, hex, r, g, b })
+    }
+
+    handleHex(event) {
+        if(event.type == 'change') {
+            this.setState({ hexinput: event.target.value })
+            return
+        }
+        if(event.type == 'keydown' && event.key != 'Enter') return
+        // if hex is valid, get tinycolor to parse it and update ALL values
+        var tc = tinycolor(event.target.value)
+        if(tc.isValid()) {
+            let { r, g, b } = tc.toRgb()
+            let { h, s, v } = tc.toHsv()
+            s *= 100; v *= 100
+            let hex = tc.toHexString()
+            this.setState({ h, s, v, r, g, b, hex })
+        } else {
+            this.setState({ hexinput: this.state.hex })
+        }
     }
 
 }

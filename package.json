@@ -12,9 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "coloreact": "^0.2.4",
+    "copy-to-clipboard": "^3.2.0",
+    "glamor": "^2.20.40",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-numeric-input": "^2.2.3",
+    "react-toastify": "^5.3.1",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.2",
     "tinycolor2": "^1.4.1"
