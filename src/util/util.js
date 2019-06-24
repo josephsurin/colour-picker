@@ -15,3 +15,15 @@ export function copycol(val, hex) {
         autoClose: 1500
     })
 }
+
+export function notify(msg) {
+    toast(msg, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        className: `${css({ borderLeft: '8px solid #95eb85' })} copy-toast`,
+        hideProgressBar: true,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
+        closeButton: false,
+        autoClose: 1500
+    })
+}
