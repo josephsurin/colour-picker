@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "color-scheme": "^1.0.1",
     "coloreact": "^0.2.4",
     "copy-to-clipboard": "^3.2.0",
     "glamor": "^2.20.40",

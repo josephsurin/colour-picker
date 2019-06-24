@@ -10,6 +10,7 @@ import ValSlider from './ValSlider.jsx'
 import NumericInput from 'react-numeric-input'
 import PreviewArea from './PreviewArea.jsx'
 import SchemesArea from './SchemesArea.jsx'
+import PaletteArea from './PaletteArea.jsx'
 
 export default class App extends Component {
     constructor(props) {
@@ -82,6 +83,7 @@ export default class App extends Component {
                 </div>
                 <PreviewArea h={h} s={s} v={v} r={r} g={g} b={b} hex={hex} hexinput={hexinput} handleHex={this.handleHex.bind(this)} />
                 <SchemesArea seed={hex} />
+                <PaletteArea hex={hex} />
                 <ToastContainer />
             </div>
         )
