@@ -14,7 +14,13 @@ export default class PaletteArea extends Component {
         let { palette } = this.state
         return(
             <div className="palette-area">
-                <div className="palette-header">custom palette</div>
+                <div className="palette-header">
+                    <span>custom palette</span>
+                    <div className="palette-action-icons">
+                        <i className="material-icons" onClick={this.addBlock.bind(this)}>library_add</i>
+                        <i className="material-icons" onClick={this.clearPalette.bind(this)}>delete_forever</i>
+                    </div>
+                </div>
                 <div className="palette-elements-container">
                     {palette.map((el, i) => <div key={i} className="palette-element" onContextMenu={this.setColour.bind(this, i)} onClick={this.copyColour.bind(this, i)} style={ el ? { backgroundColor: el } : {} }></div>)}
                 </div>
@@ -25,7 +31,11 @@ export default class PaletteArea extends Component {
     setColour(i, event) {
         event.preventDefault()
         let { palette } = this.state
-        palette[i] = this.props.hex
+        if(palette[i]) {
+            palette[i] = false
+        } else {
+            palette[i] = this.props.hex
+        }
         this.setState({ palette })
     }
 
@@ -35,5 +45,15 @@ export default class PaletteArea extends Component {
         if(hex) {
             copycol(hex, hex)
         }
+    }
+
+    addBlock() {
+        let { palette } = this.state
+        this.setState({ palette: [...palette, false] })
+    }
+
+    clearPalette() {
+        let { palette } = this.state
+        this.setState({ palette: Array(palette.length).fill(false) })
     }
 }

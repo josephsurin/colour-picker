@@ -24,7 +24,7 @@ body, html, #app
     background-color: $main-bg
     height: 100%
     margin: 0
-    font-family: 'Noto Sans HK'
+    font-family: 'Cantarell'
     font-weight: 300
     padding: 0
     user-select: none
@@ -92,8 +92,6 @@ body, html, #app
                 top: 82px
                 left: 82px
     .colours-sliders
-        font-family: 'Noto Sans HK'
-        font-weight: 300
         color: #6d727f
         font-size: 12px
         width: 90%
@@ -203,16 +201,27 @@ body, html, #app
     .palette-area
         width: 100%
         height: 100%
-        background-color: darken($main-bg, 4%)
+        background-color: darken($preview-area-bg, 2%)
         .palette-header
             font-family: 'Cantarell'
             font-weight: 600
             font-size: 12px
+            display: grid
+            grid-template-columns: auto 40px 8px
             text-indent: 8px
             width: 100%
             padding: 4px 0
             color: #ccc
-            background-color: darken($main-bg, 8%)
+            background-color: darken($preview-area-bg, 4%)
+            position: relative
+            .palette-action-icons
+                display: flex
+                align-items: center
+                .material-icons
+                    font-size: 12px
+                    cursor: pointer
+                    &:hover
+                        color: white
         .palette-elements-container
             width: auto
             height: 95%
