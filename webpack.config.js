@@ -1,11 +1,14 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const rxPaths = require('rxjs/_esm5/path-mapping')
 
 module.exports = {
     entry: './src/index.js',
     output: {
         path: __dirname + '/build/',
-        filename: 'bundle.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js'
     },
     module: {
         rules: [
@@ -29,7 +32,8 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [' ', '.js', 'jsx']
+        extensions: [' ', '.js', 'jsx'],
+        alias: rxPaths()
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -38,6 +42,7 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'bundle.css',
-        })
+        }),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ]
 }

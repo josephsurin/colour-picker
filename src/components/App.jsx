@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { Map } from 'coloreact'
 import tinycolor from 'tinycolor2'
-import Hue from './Hue.jsx'
-import RGBSlider from './RGBSlider.jsx'
-import HueSlider from './HueSlider.jsx'
-import SatSlider from './SatSlider.jsx'
-import ValSlider from './ValSlider.jsx'
-import NumericInput from 'react-numeric-input'
-import PreviewArea from './PreviewArea.jsx'
-import SchemesArea from './SchemesArea.jsx'
-import PaletteArea from './PaletteArea.jsx'
+import loadable from '@loadable/component'
+const Hue = loadable(() => import('./Hue.jsx'))
+const RGBSlider = loadable(() => import('./RGBSlider.jsx'))
+const HueSlider = loadable(() => import('./HueSlider.jsx'))
+const SatSlider = loadable(() => import('./SatSlider.jsx'))
+const ValSlider = loadable(() => import('./ValSlider.jsx'))
+const NumericInput = loadable(() => import('react-numeric-input'))
+const PreviewArea = loadable(() => import('./PreviewArea.jsx'))
+const SchemesArea = loadable(() => import('./SchemesArea.jsx'))
+const PaletteArea = loadable(() => import('./PaletteArea.jsx'))
 
 export default class App extends Component {
     constructor(props) {

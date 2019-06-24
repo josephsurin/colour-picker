@@ -1,5 +1,6 @@
 import React from 'react'
-import { fromEvent } from 'rxjs'
+import { Observable } from 'rxjs'
+import 'rxjs/add/observable/fromEvent'
 import 'rxjs/add/operator/concatMap'
 import 'rxjs/add/operator/takeUntil'
 import 'rxjs/add/operator/map'
@@ -51,10 +52,10 @@ class Hue extends React.Component {
     
     componentDidMount() {
         // Event handling using Reactive JS
-        let mouseDowns = fromEvent(this.wheel, 'mousedown')
-        let mouseMoves = fromEvent(document.body, 'mousemove')
-        let mouseUps = fromEvent(document.body, 'mouseup')
-        // let mouseLeaves = fromEvent(this.canvas, "mouseleave");
+        let mouseDowns = Observable.fromEvent(this.wheel, 'mousedown')
+        let mouseMoves = Observable.fromEvent(document.body, 'mousemove')
+        let mouseUps = Observable.fromEvent(document.body, 'mouseup')
+        // let mouseLeaves = Observable.fromEvent(this.canvas, "mouseleave");
       
         mouseDowns.subscribe(clickEvent => {
             const centerMagic = 199

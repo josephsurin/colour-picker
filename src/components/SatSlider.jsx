@@ -1,5 +1,7 @@
 import React from 'react'
-import { fromEvent } from 'rxjs'
+import { Observable } from 'rxjs'
+import 'rxjs/add/observable/fromEvent'
+import 'rxjs/add/operator/concatMap'
 import tinycolor from 'tinycolor2'
 import Marker from './Marker.jsx'
 
@@ -33,7 +35,7 @@ export default class SatSlider extends React.Component {
     }
   
     componentDidMount() {
-        let mouseDown = fromEvent(this.satslider, 'mousedown')
+        let mouseDown = Observable.fromEvent(this.satslider, 'mousedown')
         mouseDown.subscribe(clickEvent => {
             const sat = Math.round(100*(clickEvent.offsetX/this.props.width)) > 100 ? 100 : Math.round(100*(clickEvent.offsetX/this.props.width))
             this.setState({
@@ -43,8 +45,8 @@ export default class SatSlider extends React.Component {
 
         })
 
-        let mouseMoves = fromEvent(document.body, 'mousemove')
-        let mouseUps = fromEvent(document.body, 'mouseup')
+        let mouseMoves = Observable.fromEvent(document.body, 'mousemove')
+        let mouseUps = Observable.fromEvent(document.body, 'mouseup')
 
         let mouseDrags = mouseDown.concatMap(clickEvent => {
             const xMouseShouldBe = this.state.sat*this.props.width/100

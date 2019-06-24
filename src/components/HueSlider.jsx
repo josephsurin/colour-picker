@@ -1,5 +1,7 @@
 import React from 'react'
-import { fromEvent } from 'rxjs'
+import { Observable } from 'rxjs'
+import 'rxjs/add/observable/fromEvent'
+import 'rxjs/add/operator/concatMap'
 import Marker from './Marker.jsx'
 
 export default class HueSlider extends React.Component {
@@ -28,7 +30,7 @@ export default class HueSlider extends React.Component {
     }
   
     componentDidMount() {
-        let mouseDown = fromEvent(this.hueslider, 'mousedown')
+        let mouseDown = Observable.fromEvent(this.hueslider, 'mousedown')
         mouseDown.subscribe(clickEvent => {
             const hue = Math.round(360*(clickEvent.offsetX/this.props.width)) > 360 ? 360 : Math.round(360*(clickEvent.offsetX/this.props.width))
             this.setState({
@@ -38,8 +40,8 @@ export default class HueSlider extends React.Component {
 
         })
 
-        let mouseMoves = fromEvent(document.body, 'mousemove')
-        let mouseUps = fromEvent(document.body, 'mouseup')
+        let mouseMoves = Observable.fromEvent(document.body, 'mousemove')
+        let mouseUps = Observable.fromEvent(document.body, 'mouseup')
 
         let mouseDrags = mouseDown.concatMap(clickEvent => {
             const xMouseShouldBe = this.state.hue

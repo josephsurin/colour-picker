@@ -1,5 +1,7 @@
 import React from 'react'
-import { fromEvent } from 'rxjs'
+import { Observable } from 'rxjs'
+import 'rxjs/add/observable/fromEvent'
+import 'rxjs/add/operator/concatMap'
 import tinycolor from 'tinycolor2'
 import Marker from './Marker.jsx'
 
@@ -34,7 +36,7 @@ export default class RGBSlider extends React.Component {
     }
   
     componentDidMount() {
-        let mouseDown = fromEvent(this.rgbslider, 'mousedown')
+        let mouseDown = Observable.fromEvent(this.rgbslider, 'mousedown')
         mouseDown.subscribe(clickEvent => {
             const val = Math.round(255*(clickEvent.offsetX/this.props.width)) > 255 ? 255 : Math.round(255*(clickEvent.offsetX/this.props.width))
             this.setState({
@@ -44,8 +46,8 @@ export default class RGBSlider extends React.Component {
 
         })
 
-        let mouseMoves = fromEvent(document.body, 'mousemove')
-        let mouseUps = fromEvent(document.body, 'mouseup')
+        let mouseMoves = Observable.fromEvent(document.body, 'mousemove')
+        let mouseUps = Observable.fromEvent(document.body, 'mouseup')
 
         let mouseDrags = mouseDown.concatMap(clickEvent => {
             const xMouseShouldBe = this.state[this.props.change]*this.props.width/255
