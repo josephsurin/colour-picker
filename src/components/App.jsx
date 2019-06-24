@@ -53,32 +53,32 @@ export default class App extends Component {
                             <span className="colour-labels">red</span>
                             <RGBSlider onSlide={this.handleRGB.bind(this, 'r')} change="r" r={r} g={g} b={b} className="slider" width={360} height={30}/>
                             <NumericInput onChange={this.handleRGB.bind(this, 'r')} min={0} max={255} value={r} className="colours-numinputs" style={false}/>
-                            </div>
+                        </div>
                         <div className="colours-slider">
                             <span className="colour-labels">green</span>
                             <RGBSlider onSlide={this.handleRGB.bind(this, 'g')} change="g" r={r} g={g} b={b} className="slider" width={360} height={30}/>
                             <NumericInput onChange={this.handleRGB.bind(this, 'g')} min={0} max={255} value={g} className="colours-numinputs" style={false}/>
-                            </div>
+                        </div>
                         <div className="colours-slider">
                             <span className="colour-labels">blue</span> 
                             <RGBSlider onSlide={this.handleRGB.bind(this, 'b')} change="b" r={r} g={g} b={b} className="slider" width={360} height={30}/>
                             <NumericInput onChange={this.handleRGB.bind(this, 'b')} min={0} max={255} value={b} className="colours-numinputs" style={false}/>
-                            </div>
+                        </div>
                         <div className="colours-slider">
                             <span className="colour-labels">hue</span>
                             <HueSlider onHueSlide={this.handleHue.bind(this)} hue={h} className="slider" width={360} height={30}/>
                             <NumericInput onChange={this.handleHue.bind(this)} min={0} max={360} value={Math.round(h)} className="colours-numinputs" style={false}/>
-                            </div>
+                        </div>
                         <div className="colours-slider">
                             <span className="colour-labels">saturation</span>
                             <SatSlider onSatSlide={this.handleSat.bind(this)} hue={h} sat={s} val={v} className="slider" width={360} height={30}/>
                             <NumericInput onChange={this.handleSat.bind(this)} min={0} max={100} value={Math.round(s)} className="colours-numinputs" style={false}/>
-                            </div>
+                        </div>
                         <div className="colours-slider">
                             <span className="colour-labels">value</span>
                             <ValSlider onValSlide={this.handleVal.bind(this)} hue={h} sat={s} val={v} className="slider" width={360} height={30}/>
                             <NumericInput onChange={this.handleVal.bind(this)} min={0} max={100} value={Math.round(v)} className="colours-numinputs" style={false}/>
-                            </div>
+                        </div>
                     </div>
                 </div>
                 <PreviewArea h={h} s={s} v={v} r={r} g={g} b={b} hex={hex} hexinput={hexinput} handleHex={this.handleHex.bind(this)} />

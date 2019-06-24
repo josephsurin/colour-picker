@@ -8,7 +8,7 @@ export default class PreviewArea extends Component {
     }
 
     render() {
-        let { h, s, v, r, g, b, hex, handleHex, hexinput } = this.props
+        let { hex, handleHex, hexinput } = this.props
         var tc = tinycolor(hex)
         var rgbstring = tc.toString('rgb')
         var hsvstring = tc.toString('hsv')

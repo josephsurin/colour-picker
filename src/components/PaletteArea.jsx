@@ -42,7 +42,7 @@ export default class PaletteArea extends Component {
         this.setState({ palette })
     }
 
-    copyColour(i, event) {
+    copyColour(i) {
         let { palette } = this.state
         var hex = palette[i]
         if(hex) {
