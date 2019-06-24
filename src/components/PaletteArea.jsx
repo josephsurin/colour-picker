@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
-import { copycol, notify } from '../util/util'
+import LZUTF8 from 'lzutf8'
+import { copycol, notify, notifyBottom } from '../util/util'
 
 export default class PaletteArea extends Component {
     constructor(props) {
         super(props)
+
+        var sharedPalette = (new URL(document.location)).searchParams.get('palette')
+        // shared palette takes precedence
+        if(sharedPalette && decodePalette(sharedPalette)) {
+            var palette = decodePalette(sharedPalette)
+            this.state = { palette }
+            return
+        }
+
+        if(sharedPalette) {
+            notifyBottom('There was an error loading the palette from URL')
+        }
 
         // check for palette in localStorage
         var savedPalette = window.localStorage.getItem('palette')
@@ -19,6 +32,7 @@ export default class PaletteArea extends Component {
                 <div className="palette-header">
                     <span>custom palette</span>
                     <div className="palette-action-icons">
+                        <i className="material-icons" onClick={this.sharePalette.bind(this)}>share</i>
                         <i className="material-icons" onClick={this.savePalette.bind(this)}>save</i>
                         <i className="material-icons" onClick={this.addBlock.bind(this)}>library_add</i>
                         <i className="material-icons" onClick={this.clearPalette.bind(this)}>delete_forever</i>
@@ -68,23 +82,30 @@ export default class PaletteArea extends Component {
         window.localStorage.removeItem('palette')
         notify('Palette cleared!')
     }
+
+    sharePalette() {
+        let { palette } = this.state
+        var shareLink = document.location.origin + '/?palette=' + encodePalette(palette)
+        var notifyMsg = (<div>Share <a href={shareLink}>this</a> link to share your palette!</div>)
+        notifyBottom(notifyMsg)
+    }
 }
 
 function encodePalette(palette) {
-    //base64("length|i:#xxxxxx|...")
+    //LZUTF8.compress("length|i:#xxxxxx|...") base64 output
     var encoded = `${palette.length}`
     palette.forEach((el, i) => {
         if(el) {
             encoded += `|${i}:${el}`
         }
     })
-    return btoa(encoded)
+    return LZUTF8.compress(encoded, { outputEncoding: 'Base64' })
 }
 
 function decodePalette(encoded) {
     //returns a palette array
     try {
-        encoded = atob(encoded) //base64 decode
+        var encoded = LZUTF8.decompress(encoded, { inputEncoding: 'Base64' })
         var l = parseInt(encoded.split('|')[0])
         var palette = Array(l).fill(false)
         encoded.split('|').slice(1).forEach(el => {

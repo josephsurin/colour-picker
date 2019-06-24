@@ -15,6 +15,7 @@
     "coloreact": "^0.2.4",
     "copy-to-clipboard": "^3.2.0",
     "glamor": "^2.20.40",
+    "lzutf8": "^0.5.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-numeric-input": "^2.2.3",

@@ -27,3 +27,16 @@ export function notify(msg) {
         autoClose: 1500
     })
 }
+
+export function notifyBottom(msg) {
+    toast(msg, {
+        position: toast.POSITION.BOTTOM_CENTER,
+        className: `${css({ borderBottom: '4px solid #a886e6' })} copy-toast bottom-toast`,
+        hideProgressBar: true,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
+        draggable: false,
+        autoClose: false
+    })
+}
+
