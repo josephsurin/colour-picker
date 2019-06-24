@@ -85,7 +85,7 @@ export default class PaletteArea extends Component {
 
     sharePalette() {
         let { palette } = this.state
-        var shareLink = document.location.origin + '/?palette=' + encodePalette(palette)
+        var shareLink = document.location.origin + document.location.pathname + '?palette=' + encodePalette(palette)
         var notifyMsg = (<div>Share <a href={shareLink}>this</a> link to share your palette!</div>)
         notifyBottom(notifyMsg)
     }
