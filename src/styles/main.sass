@@ -22,7 +22,8 @@ input[type='text']
 
 body, html, #app
     background-color: $main-bg
-    height: 100%
+    height: 100vh
+    overflow-y: hidden
     margin: 0
     font-family: 'Cantarell'
     font-weight: 300
@@ -55,6 +56,7 @@ body, html, #app
         display: grid
         grid-template-columns: 100%
         grid-template-rows: 400px auto
+        overflow-y: auto
         .colour-area-picker
             padding: 20px
             margin-top: -25px
@@ -135,6 +137,7 @@ body, html, #app
         grid-template-columns: 50% 50%
         grid-template-rows: 100px 100px 62px 62px 62px 62px auto
         background-color: $preview-area-bg
+        overflow-y: auto
         .preview-block
             height: 80%
             width: 80%
@@ -230,7 +233,7 @@ body, html, #app
                         color: white
         .palette-elements-container
             width: auto
-            height: 95%
+            height: 100%
             margin: 8px
             display: flex
             align-content: start
